@@ -10,7 +10,7 @@ To submit your lab, fork [this repository](https://github.com/FAR-Lab/IDD-Fa18-L
 
 **Describe what changes you made to the baseline chatbot here. Don't forget to push your modified code to this repository.**
 
-Change most of the chat messages to turn it into ZenBot - Your personal Buddha, who gives advices and stuff!
+Change most of the chat messages to turn it into ZenBot - Your personal Buddha, who gives life advices and stuff!
 
 ## Record someone trying out your ChatBot
 
