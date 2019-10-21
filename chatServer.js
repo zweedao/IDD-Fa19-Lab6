@@ -30,8 +30,8 @@ io.on('connect', function(socket) {
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function() { // we wait until the client has loaded and contacted us that it is ready to go.
 
-    socket.emit('answer', "Hey, hello I am \"___*-\" a simple chat bot example."); //We start with the introduction;
-    setTimeout(timedQuestion, 5000, socket, "What is your name?"); // Wait a moment and respond with a question.
+    socket.emit('answer', "Namaste, I am Zenbot, your personal Buddha :)"); //We start with the introduction;
+    setTimeout(timedQuestion, 3000, socket, "What is your name?"); // Wait a moment and respond with a question.
 
   });
   socket.on('message', (data) => { // If we get a new message from the client we process it;
@@ -51,44 +51,46 @@ function bot(data, socket, questionNum) {
 
   /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-    answer = 'Hello ' + input + ' :-)'; // output response
-    waitTime = 5000;
+    answer = 'Hello ' + input + '. May the peace be with you!'; // output response
+    waitTime = 3000;
     question = 'How old are you?'; // load next question
   } else if (questionNum == 1) {
-    answer = 'Really, ' + input + ' years old? So that means you were born in: ' + (2018 - parseInt(input)); // output response
+    answer = 'Really, ' + input + '. So young, you still have a lot of time to explore life! '; // output response
     waitTime = 5000;
-    question = 'Where do you live?'; // load next question
+    question = 'What do you want to do after grad school?'; // load next question
   } else if (questionNum == 2) {
-    answer = 'Cool! I have never been to ' + input + '.';
-    waitTime = 5000;
-    question = 'Whats your favorite color?'; // load next question
+    answer = 'Cool. I will help you make it happen.';
+    waitTime = 3000;
+    question = 'Now, have you ever felt down or stressed recently?'; // load next question
   } else if (questionNum == 3) {
-    answer = 'Ok, ' + input + ' it is.';
-    socket.emit('changeBG', input.toLowerCase());
-    waitTime = 5000;
-    question = 'Can you still read the font?'; // load next question
-  } else if (questionNum == 4) {
-    if (input.toLowerCase() === 'yes' || input === 1) {
-      answer = 'Perfect!';
+    if (input.toLowerCase() === 'no' || input === 0) {
+      answer = 'Man your life is too perfect. I suggest you visit Africa to experience more difficulty!';
       waitTime = 5000;
-      question = 'Whats your favorite place?';
-    } else if (input.toLowerCase() === 'no' || input === 0) {
-      socket.emit('changeFont', 'white'); /// we really should look up the inverse of what we said befor.
-      answer = ''
-      question = 'How about now?';
-      waitTime = 0;
-      questionNum--; // Here we go back in the question number this can end up in a loop
+      question = 'The Africa ticket costs $999 (special discount)! Can I have your credit card number please?';
+    } else if (input.toLowerCase() === 'yes' || input === 1) {
+      answer = 'No worry, I am here to help. '
+      question = 'The first step is to sign up for our meditation class ($399 only). Can I have your credit card number please?';
+      waitTime = 3000;
     } else {
-      question = 'Can you still read the font?'; // load next question
-      answer = 'I did not understand you. Could you please answer "yes" or "no"?'
+      question = 'Have you ever felt down or stressed recently?'; // load next question
+      answer = 'Please just answer "yes" or "no". Buddihsm keeps life simple. Namaste!'
       questionNum--;
       waitTime = 5000;
     }
     // load next question
-  } else {
-    answer = 'I have nothing more to say!'; // output response
-    waitTime = 0;
-    question = '';
+  } else if (questionNum == 4) {
+    if (input.toLowerCase() === 'no' || input === 0) {
+      answer = 'Well, it seems Buddhism is not for you. Good luck with Scientology then! I am out.';
+      waitTime = 5000;
+    } else if (input.toLowerCase() === 'yes' || input === 1) {
+      answer = 'You are too naive my child. You should be  more responsible with your money. I am out.'
+      waitTime = 5000;
+    } else {
+      question = 'Now, can I have your credit card number please?'; // load next question
+      answer = 'Please just answer "yes" or "no". Buddhism keep life simple. Namaste!'
+      questionNum--;
+      waitTime = 5000;
+    }
   }
 
 
